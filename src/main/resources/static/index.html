@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACCUEIL</title>
+</head>
+<body>
+<h1>LE PROJET</h1>
+<p><a href="disciplines/tous">voir tous les disciplines</a></p>
+<p>
+    <form action="disciplines/create" method="get">
+    libelle: <input type="text" name="nom"> <br>
+    description: <input type="text" name="desc"> <br>
+    <input type="submit" name="submit" value="SUBMIT">
+</form>
+</p>
+<p>
+<form action="disciplines/read" method="get">
+    ID DIS: <input type = "text" name="idDis"> <br>
+    <input type="submit" name="submit" value="SUBMIT">
+</form>
+</p>
+</body>
+</html>
