@@ -7,16 +7,33 @@
 <body>
 <h1>LE PROJET</h1>
 <p><a href="disciplines/tous">voir tous les disciplines</a></p>
+<h2>AJOUT</h2>
 <p>
-    <form action="disciplines/create" method="get">
+<form action="disciplines/create" method="get">
     libelle: <input type="text" name="nom"> <br>
     description: <input type="text" name="desc"> <br>
     <input type="submit" name="submit" value="SUBMIT">
 </form>
+<h2>Mettre à jour</h2>
 </p>
 <p>
+<form action="disciplines/update" method="get">
+    ID DIS: <input type="text" name="idDis"> <br>
+    description: <input type="text" name="desc"> <br>
+    <input type="submit" name="submit" value="SUBMIT">
+</form>
+</p>
+<h2>READ</h2>
+<p>
 <form action="disciplines/read" method="get">
-    ID DIS: <input type = "text" name="idDis"> <br>
+    ID DIS: <input type="text" name="idDis"> <br>
+    <input type="submit" name="submit" value="SUBMIT">
+</form>
+</p>
+<h2>DELETE</h2>
+<p>
+<form action="disciplines/delete" method="get">
+    ID DIS: <input type="text" name="idDis"> <br>
     <input type="submit" name="submit" value="SUBMIT">
 </form>
 </p>

@@ -36,25 +36,53 @@ public class GestDiscipline {
             discipline = disciplineService.read(discipline.getIdDis());
             discipline.setDisDesc(desc);
             disciplineService.update(discipline);
-            model.put("newDis",discipline);
+            model.put("newDis", discipline);
 
         } catch (Exception e) {
-            model.put("error",e.getMessage());
+            model.put("error", e.getMessage());
             return "error";
         }
         return "newDis";
     }
 
-    @RequestMapping("/read")
-    public String read (int idDis,Map<String,Object>model){
+    @RequestMapping("/update")
+    public String update(@RequestParam int idDis, String desc, Map<String, Object> model) {
         try {
-            Discipline discipline=disciplineService.read(idDis);
+            Discipline discipline= disciplineService.read(idDis);
+            discipline.setDisDesc(desc);
             disciplineService.update(discipline);
-            model.put("myDis",discipline);
-        }catch (Exception e){
-            model.put("error",e.getMessage());
+            model.put("myDis", discipline);
+
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
             return "error";
         }
         return "affdis";
+    }
+
+    @RequestMapping("/read")
+    public String read(@RequestParam int idDis, Map<String, Object> model) {
+        try {
+            Discipline discipline = disciplineService.read(idDis);
+            disciplineService.update(discipline);
+            model.put("myDis", discipline);
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+            return "error";
+        }
+        return "affdis";
+    }
+
+    @RequestMapping("/delete")
+    public String delete(@RequestParam int idDis, Map<String, Object> model) {
+        try {
+            Discipline discipline = disciplineService.read(idDis);
+            disciplineService.delete(discipline);
+            model.put("myDis", discipline);
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+            return "error";
+        }
+        return "deldis";
     }
 }
