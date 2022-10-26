@@ -4,6 +4,7 @@ package be.condorcet.projet3_2.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,5 +24,9 @@ public class Discipline {
     private String disNom;
     @Column(name = "DISDESCRIPTION")
     private String disDesc;
+
+    //@OneToMany(mappedBy = "discipline",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    //@ToString.Exclude
+    //private List<Employe> listEmp;
 
 }
