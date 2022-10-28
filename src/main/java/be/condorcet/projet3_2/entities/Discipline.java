@@ -25,8 +25,12 @@ public class Discipline {
     @Column(name = "DISDESCRIPTION")
     private String disDesc;
 
-    //@OneToMany(mappedBy = "discipline",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
-    //@ToString.Exclude
-    //private List<Employe> listEmp;
+    @OneToMany(mappedBy = "empDis",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @ToString.Exclude
+    private List<Employe> listEmp;
+
+    @OneToMany(mappedBy = "invDis",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @ToString.Exclude
+    private List<Invest> listInvest;
 
 }

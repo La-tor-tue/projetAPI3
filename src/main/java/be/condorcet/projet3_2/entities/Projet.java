@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,5 +27,14 @@ public class Projet {
     private LocalDate pjDtDebut;
     private LocalDate pjDtFin;
     private BigDecimal pjCout;
+
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "taPj")
+    private List<Travail> listTravail;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "invPj")
+    private List<Invest> listInvest;
 
 }

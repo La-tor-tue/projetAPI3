@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Executable;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(rollbackOn = Employe.class)
+@Transactional(rollbackOn = Executable.class)
 public class EmployeServiceImpl implements InterfEmployeService {
 
     @Autowired
