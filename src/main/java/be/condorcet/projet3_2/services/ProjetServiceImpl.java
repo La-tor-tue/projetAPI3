@@ -30,6 +30,7 @@ public class ProjetServiceImpl implements InterfProjetService {
 
     @Override
     public Projet update(Projet projet) throws Exception {
+        read(projet.getIdProjet());
         projetRepository.save(projet);
         return projet;
     }

@@ -18,7 +18,7 @@ public class DisciplineServiceImpl implements InterfDisciplineService {
 
     @Override
     public List<Discipline> read(String nom) {
-        return null;
+        return  disciplineRepository.findDisciplinesByDisNomLike(nom+"%");
     }
 
     @Override
@@ -35,6 +35,7 @@ public class DisciplineServiceImpl implements InterfDisciplineService {
 
     @Override
     public Discipline update(Discipline discipline) throws Exception {
+        read(discipline.getIdDis());
         disciplineRepository.save(discipline);
         return discipline;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(rollbackOn = Executable.class)
+@Transactional(rollbackOn = Exception.class)
 public class EmployeServiceImpl implements InterfEmployeService {
 
     @Autowired
@@ -31,6 +31,7 @@ public class EmployeServiceImpl implements InterfEmployeService {
 
     @Override
     public Employe update(Employe employe) throws Exception {
+        read(employe.getIdEmp());
         employeRepository.save(employe);
         return employe;
     }
