@@ -4,14 +4,17 @@ import be.condorcet.projet3_2.entities.associations.InvestID;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity
 @Table(name = "APIINVESTISSEMENT", schema = "ORA9", catalog = "ORCL")
 @IdClass(InvestID.class)
 public class Invest {
+
     @Id
     private int idDis;
     @Id
@@ -29,6 +32,5 @@ public class Invest {
     @ManyToOne
     @PrimaryKeyJoinColumn(name = "IDPJ",referencedColumnName = "IDPJ")
     private Projet invPj;
-
 
 }

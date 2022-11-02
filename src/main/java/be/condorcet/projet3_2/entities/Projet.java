@@ -19,13 +19,17 @@ import java.util.List;
 public class Projet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "projet_generator")
-    @SequenceGenerator(name = "projet_generator", sequenceName = "API_PROJET_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "projet_generator", sequenceName = "APIPROJET_SEQ1", allocationSize = 1)
     @Column(name = "IDPJ")
     private Integer idProjet;
     @NonNull
+    @Column(name = "PJTITRE")
     private String pjTitre;
-    private LocalDate pjDtDebut;
-    private LocalDate pjDtFin;
+    @Column(name = "PJDATEDEBUT")
+    private LocalDate pjDateDebut;
+    @Column(name = "PJDATEFIN")
+    private LocalDate pjDateFin;
+    @Column(name = "PJCOUT")
     private BigDecimal pjCout;
 
 
