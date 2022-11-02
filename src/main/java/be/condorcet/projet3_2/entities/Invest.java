@@ -25,12 +25,12 @@ public class Invest {
 
     @ToString.Exclude
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "IDDIS",referencedColumnName = "IDDIS")
+    @PrimaryKeyJoinColumn(name = "DISID",referencedColumnName = "IDDIS")
     private Discipline invDis;
 
     @ToString.Exclude
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "IDPJ",referencedColumnName = "IDPJ")
+    @PrimaryKeyJoinColumn(name = "PJID",referencedColumnName = "IDPJ")
     private Projet invPj;
 
 }

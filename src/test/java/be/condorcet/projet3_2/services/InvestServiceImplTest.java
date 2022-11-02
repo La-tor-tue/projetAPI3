@@ -77,7 +77,7 @@ class InvestServiceImplTest {
     @Test
     void readByAssociation() {
         try {
-            Invest invTest=interfInvestService.read(inv1.getIdPj(), inv1.getIdPj());
+            Invest invTest=interfInvestService.read(inv1.getIdPj(), inv1.getIdDis());
             assertEquals(10,invTest.getInvQuantJH(),"Quantité différente");
             assertEquals(pj1,invTest.getInvPj(),"Projet différent");
             assertEquals(dis1,invTest.getInvDis(),"Discipline différent");
