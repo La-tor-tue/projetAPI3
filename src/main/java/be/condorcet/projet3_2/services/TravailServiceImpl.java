@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-//SE RENSEIGNER SUR LES IDS CONCATENER A PASSER EN COMMENTAIRE
 @Service
 @Transactional(rollbackOn = Exception.class)
 public class TravailServiceImpl implements InterfTravailService{
@@ -33,17 +32,19 @@ public class TravailServiceImpl implements InterfTravailService{
 
     @Override
     public Travail update(Travail travail) throws Exception {
-        return null;
+        read(travail.getIdPj(), travail.getIdEmp());
+        travailRepository.save(travail);
+        return travail;
     }
 
     @Override
     public void delete(Travail travail) throws Exception {
-
+        travailRepository.delete(travail);
     }
 
     @Override
     public List<Travail> all() throws Exception {
-        return null;
+        return travailRepository.findAll();
     }
 
     @Override
