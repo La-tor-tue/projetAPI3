@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface TravailRepository extends JpaRepository<Travail, TravailID> {
-    Travail findTravailByIdEmpAndIdPj(Integer idEmp,Integer idPj);
+    Travail findTravailById_IdEmpAndId_IdPj(Integer idEmp,Integer idPj);
 }

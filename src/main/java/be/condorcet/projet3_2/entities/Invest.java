@@ -5,32 +5,35 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
+@Entity(name = "Invest")
 @Table(name = "APIINVESTISSEMENT", schema = "ORA9", catalog = "ORCL")
-@IdClass(InvestID.class)
 public class Invest {
 
-    @Id
-    private int idDis;
-    @Id
-    private int idPj;
+    @EmbeddedId
+    @AttributeOverrides({
+            @AttributeOverride(name = "idDis",column = @Column(name = "IDDIS")),
+            @AttributeOverride(name="idPj",column = @Column(name = "IDPJ"))
+    })
+    private InvestID id;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idDis")
+    private Discipline idDis;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idPj")
+    private Projet idPj;
 
     @Column(name = "INVQUANTITEJH")
     private int invQuantJH;
 
-    @ToString.Exclude
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "DISID",referencedColumnName = "IDDIS")
-    private Discipline invDis;
-
-    @ToString.Exclude
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "PJID",referencedColumnName = "IDPJ")
-    private Projet invPj;
 
 }
