@@ -31,12 +31,12 @@ public class InvestServiceImpl implements InterfInvestService{
 
     @Override
     public Invest read(Integer idPj, Integer idDis) throws Exception {
-        return investRepository.findByIdPjAndIdDis(idPj,idDis);
+        return investRepository.findInvestById_IdPjAndId_IdDis(idPj,idDis);
     }
 
     @Override
     public Invest update(Invest invest) throws Exception {
-        read(invest.getIdPj(), invest.getIdDis());
+        read(invest.getId());
         investRepository.save(invest);
         return invest;
     }

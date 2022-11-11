@@ -13,12 +13,9 @@ import java.time.LocalDate;
 @Entity
 
 @Table(name = "APITRAVAIL", schema = "ORA9", catalog = "ORCL")
-@IdClass(TravailID.class)
 public class Travail {
-    @Id
-    private int idEmp;
-    @Id
-    private int idPj;
+    @EmbeddedId
+    private TravailID id;
 
     @Column(name = "TAPOURCENTAGE")
     private int taPourcent;
@@ -26,13 +23,13 @@ public class Travail {
     private LocalDate taDateEngagement;
 
     @ToString.Exclude
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "IDEMP", referencedColumnName = "IDEMP")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idEmp")
     private Employe taEmp;
 
     @ToString.Exclude
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "IDPJ", referencedColumnName = "IDPJ")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idPj")
     private Projet taPj;
 
 }

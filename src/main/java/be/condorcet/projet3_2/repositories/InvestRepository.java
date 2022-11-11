@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface InvestRepository extends JpaRepository<Invest, InvestID> {
 
-    Invest findByIdPjAndIdDis(int idPJ,int idDIS);
+    Invest findInvestById_IdPjAndId_IdDis(Integer idPj, Integer idDis);
 }

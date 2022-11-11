@@ -4,6 +4,7 @@ import be.condorcet.projet3_2.entities.Discipline;
 import be.condorcet.projet3_2.entities.Employe;
 import be.condorcet.projet3_2.entities.Invest;
 import be.condorcet.projet3_2.entities.Projet;
+import be.condorcet.projet3_2.entities.associations.InvestID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,8 @@ class InvestServiceImplTest {
             System.out.println("CREATION DE LA DISCIPLINE " + dis1);
             int idPj= pj1.getIdProjet();
             int idDis= dis1.getIdDis();
-            inv1 = new Invest(idDis, idPj, 10, dis1, pj1);
+            InvestID tmp = new InvestID(idDis,idPj);
+            inv1 = new Invest(tmp, dis1, pj1,10);
             interfInvestService.create(inv1);
             System.out.println("CREATION DE L INVEST " + inv1 + " /DU PJ " + pj1 + " ET DE LA DISCIPLINE " + dis1);
         } catch (Exception e) {
@@ -77,10 +79,10 @@ class InvestServiceImplTest {
     @Test
     void readByAssociation() {
         try {
-            Invest invTest=interfInvestService.read(inv1.getIdPj(), inv1.getIdDis());
+            Invest invTest=interfInvestService.read(inv1.getId());
             assertEquals(10,invTest.getInvQuantJH(),"Quantité différente");
-            assertEquals(pj1,invTest.getInvPj(),"Projet différent");
-            assertEquals(dis1,invTest.getInvDis(),"Discipline différent");
+            assertEquals(pj1,invTest.getIdPj(),"Projet différent");
+            assertEquals(dis1,invTest.getIdDis(),"Discipline différent");
         }catch (Exception e){
             fail("Recherche d'INVEST ERROR: "+e);
         }

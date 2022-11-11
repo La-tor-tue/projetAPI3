@@ -32,7 +32,7 @@ public class TravailServiceImpl implements InterfTravailService{
 
     @Override
     public Travail update(Travail travail) throws Exception {
-        read(travail.getIdPj(), travail.getIdEmp());
+        read(travail.getId());
         travailRepository.save(travail);
         return travail;
     }
@@ -49,6 +49,6 @@ public class TravailServiceImpl implements InterfTravailService{
 
     @Override
     public Travail read(Integer idPj, Integer idEmp) throws Exception {
-        return travailRepository.findTravailByIdEmpAndIdPj(idEmp,idPj);
+        return travailRepository.findTravailById_IdEmpAndId_IdPj(idEmp,idPj);
     }
 }

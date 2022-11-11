@@ -38,7 +38,7 @@ public class Projet {
     private List<Travail> listTravail;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "invPj")
+    @OneToMany(mappedBy = "idPj",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Invest> listInvest;
 
 }
