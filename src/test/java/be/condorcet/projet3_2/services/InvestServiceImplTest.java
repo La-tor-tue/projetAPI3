@@ -39,15 +39,22 @@ class InvestServiceImplTest {
             pj1 = new Projet(null, "ProjetTest1", null, null, new BigDecimal(10), new ArrayList<>(), new ArrayList<>());
             interfProjetService.create(pj1);
             System.out.println("CREATION DU PROJET " + pj1);
+
             dis1 = new Discipline(null, "NomTest", "DescTest", new ArrayList<>(), new ArrayList<>());
             interfDisciplineService.create(dis1);
             System.out.println("CREATION DE LA DISCIPLINE " + dis1);
-            int idPj= pj1.getIdProjet();
-            int idDis= dis1.getIdDis();
-            InvestID tmp = new InvestID(idDis,idPj);
-            inv1 = new Invest(tmp, dis1, pj1,10);
+
+            int idPj = pj1.getIdProjet();
+            int idDis = dis1.getIdDis();
+
+            InvestID tmp = new InvestID(idDis, idPj);
+
+            inv1 = new Invest(tmp, dis1, pj1, 10);
+
+            System.out.println("CREATION DE L INVEST " + inv1 + " /DU PJ " + pj1 + " ET DE LA DISCIPLINE " + dis1);
             interfInvestService.create(inv1);
             System.out.println("CREATION DE L INVEST " + inv1 + " /DU PJ " + pj1 + " ET DE LA DISCIPLINE " + dis1);
+
         } catch (Exception e) {
             System.out.println("SET UP ERROR: ERREUR DE CREATION: " + e.getMessage());
         }
@@ -58,34 +65,40 @@ class InvestServiceImplTest {
         try {
             interfInvestService.delete(inv1);
             System.out.println("DESTRUCTION DE : " + inv1);
+        } catch (Exception e) {
+            System.out.println("TEAR DOWN ERROR : ERREUR DE DELETE: " + e.getMessage());
+        }
+
+        try {
             interfProjetService.delete(pj1);
             System.out.println("DESTRUCTION ANNEXE DE : " + pj1);
             interfDisciplineService.delete(dis1);
-            System.out.println("DESTRUCTION ANNEXE DE : "+dis1);
+            System.out.println("DESTRUCTION ANNEXE DE : " + dis1);
         } catch (Exception e) {
-            System.out.println("TEAR DOWN ERROR : ERREUR DE DELETE: "+ e.getMessage());
+            System.out.println("TEAR DOWN ERROR : ERREUR DE DELETE: " + e.getMessage());
+
         }
     }
 
     @Test
     void create() {
+
     }
 
     @Test
-    void read(){
-        
+    void read() {
+        try {
+            Invest invTest = interfInvestService.read(inv1.getId());
+            assertEquals(10, invTest.getInvQuantJH(), "Quantité différente");
+            assertEquals(pj1, invTest.getIdPj(), "Projet différent");
+            assertEquals(dis1, invTest.getIdDis(), "Discipline différent");
+        } catch (Exception e) {
+            fail("Recherche d'INVEST ERROR: " + e);
+        }
     }
 
     @Test
     void readByAssociation() {
-        try {
-            Invest invTest=interfInvestService.read(inv1.getId());
-            assertEquals(10,invTest.getInvQuantJH(),"Quantité différente");
-            assertEquals(pj1,invTest.getIdPj(),"Projet différent");
-            assertEquals(dis1,invTest.getIdDis(),"Discipline différent");
-        }catch (Exception e){
-            fail("Recherche d'INVEST ERROR: "+e);
-        }
     }
 
     @Test

@@ -13,7 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class TravailID implements Serializable {
 
-@Column(name = "IDEMP")
+    @Column(name = "IDEMP")
     private int idEmp;
     @Column(name = "IDPJ")
     private int idPj;

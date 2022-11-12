@@ -15,7 +15,7 @@ public class InvestID implements Serializable {
     @Column(name = "IDDIS")
     private int idDis;
 
-@Column(name = "IDPJ")
+    @Column(name = "IDPJ")
     private int idPj;
 
     @Override
