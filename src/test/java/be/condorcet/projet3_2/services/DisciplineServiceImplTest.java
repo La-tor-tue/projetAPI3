@@ -19,12 +19,6 @@ class DisciplineServiceImplTest {
     @Autowired
     private InterfDisciplineService disciplineService;
 
-    @Autowired
-    private InterfProjetService projetService;
-
-    @Autowired
-    private InterfEmployeService employeService;
-
     Discipline dis;
 
     @BeforeEach

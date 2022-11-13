@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity
 
@@ -25,11 +26,11 @@ public class Travail {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idEmp")
-    private Employe taEmp;
+    private Employe idEmp;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idPj")
-    private Projet taPj;
+    private Projet idPj;
 
 }

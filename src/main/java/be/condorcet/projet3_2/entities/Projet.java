@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -34,11 +35,23 @@ public class Projet {
 
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "taPj")
+    @OneToMany(mappedBy = "idPj")
     private List<Travail> listTravail;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "idPj",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "idPj")
     private List<Invest> listInvest;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Projet projet = (Projet) o;
+        return idProjet.equals(projet.idProjet) && pjTitre.equals(projet.pjTitre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProjet, pjTitre);
+    }
 }

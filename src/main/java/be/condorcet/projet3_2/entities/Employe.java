@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -33,11 +34,24 @@ public class Employe {
     private String empTel;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "taEmp",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "idEmp")
     private List<Travail> listTravail;
 
     @ManyToOne
     @JoinColumn(name = "IDDIS")
     @NonNull
     private Discipline empDis;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employe employe = (Employe) o;
+        return idEmp.equals(employe.idEmp) && empMatricule.equals(employe.empMatricule);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEmp, empMatricule);
+    }
 }
