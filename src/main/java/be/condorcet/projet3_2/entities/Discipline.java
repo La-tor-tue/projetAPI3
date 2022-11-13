@@ -41,11 +41,11 @@ public class Discipline {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Discipline that = (Discipline) o;
-        return idDis.equals(that.idDis);
+        return Objects.equals(idDis, that.idDis) && disNom.equals(that.disNom);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idDis);
+        return Objects.hash(idDis, disNom);
     }
 }

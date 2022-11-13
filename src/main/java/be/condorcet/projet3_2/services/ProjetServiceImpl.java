@@ -44,4 +44,8 @@ public class ProjetServiceImpl implements InterfProjetService {
     public List<Projet> all() throws Exception {
         return projetRepository.findAll();
     }
+
+    public List<Projet> read(String titre){
+        return projetRepository.findProjetsByPjTitreLike(titre);
+    }
 }

@@ -1,5 +1,6 @@
 package be.condorcet.projet3_2.services;
 
+import be.condorcet.projet3_2.entities.Discipline;
 import be.condorcet.projet3_2.entities.Employe;
 import be.condorcet.projet3_2.repositories.EmployeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,6 @@ public class EmployeServiceImpl implements InterfEmployeService {
         Optional<Employe> oemp=employeRepository.findById(id);
         return oemp.get();
     }
-
     @Override
     public Employe update(Employe employe) throws Exception {
         read(employe.getIdEmp());
@@ -46,4 +46,14 @@ public class EmployeServiceImpl implements InterfEmployeService {
     public List<Employe> all() throws Exception {
         return employeRepository.findAll();
     }
+
+
+    public List<Employe> read(String nom){
+        return employeRepository.findEmployesByEmpNomLike(nom);
+    }
+
+    public List<Employe> read(Discipline discipline){
+        return employeRepository.findEmployesByEmpDisLike(discipline);
+    }
+
 }
