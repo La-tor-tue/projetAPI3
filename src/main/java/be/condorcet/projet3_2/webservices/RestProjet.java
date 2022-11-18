@@ -3,9 +3,13 @@ package be.condorcet.projet3_2.webservices;
 import be.condorcet.projet3_2.entities.Projet;
 import be.condorcet.projet3_2.services.InterfProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*",exposedHeaders = "*")
 @RestController
@@ -57,9 +61,19 @@ public class RestProjet {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //-----Trouver tous les projets
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    public ResponseEntity<List<Projet>> getAll() throws Exception{
+        System.out.println("Recherche de tous les projets");
+        return new ResponseEntity<>(projetService.all(),HttpStatus.OK);
+    }
 
-
-
-
-
+    //-----Trouver tous les projets
+    /*
+    @RequestMapping(value = "/allp",method = RequestMethod.GET)
+    public ResponseEntity<Page<Projet>> getAll(Pageable pageable) throws Exception{
+        System.out.println("Recherche de tous les projets");
+        return new ResponseEntity<>(projetService.allp(),HttpStatus.OK);
+    }
+     */
 }
