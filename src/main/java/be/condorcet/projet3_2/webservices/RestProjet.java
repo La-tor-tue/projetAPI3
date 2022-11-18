@@ -52,7 +52,7 @@ public class RestProjet {
         return new ResponseEntity<>(pj,HttpStatus.OK);
     }
 
-    //-----Delete un projet --------------
+    //-----Delete un projet ----------------
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteProjet(@PathVariable(value = "id")int id) throws Exception{
         System.out.println("Delete du projet: "+id);
@@ -61,14 +61,14 @@ public class RestProjet {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //-----Trouver tous les projets
+    //-----Trouver tous les projets --------
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public ResponseEntity<List<Projet>> getAll() throws Exception{
         System.out.println("Recherche de tous les projets");
         return new ResponseEntity<>(projetService.all(),HttpStatus.OK);
     }
 
-    //-----Trouver tous les projets
+    //-----Trouver tous les projets ---------
     /*
     @RequestMapping(value = "/allp",method = RequestMethod.GET)
     public ResponseEntity<Page<Projet>> getAll(Pageable pageable) throws Exception{
@@ -76,4 +76,11 @@ public class RestProjet {
         return new ResponseEntity<>(projetService.allp(),HttpStatus.OK);
     }
      */
+
+    //------Gestion des erreures ------------
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<Void>  handleIOException(Exception e) {
+        System.out.println("ERROR: "+e.getMessage());
+        return ResponseEntity.notFound().header("ERROR",e.getMessage()).build();
+    }
 }
