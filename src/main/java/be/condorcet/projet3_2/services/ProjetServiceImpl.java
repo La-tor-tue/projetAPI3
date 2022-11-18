@@ -45,7 +45,8 @@ public class ProjetServiceImpl implements InterfProjetService {
         return projetRepository.findAll();
     }
 
-    public List<Projet> read(String titre){
-        return projetRepository.findProjetsByPjTitreLike(titre);
+    @Override
+    public Projet read(String titre) {
+        return projetRepository.findProjetByPjTitre(titre);
     }
 }
