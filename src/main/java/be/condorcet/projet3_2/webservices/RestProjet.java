@@ -69,13 +69,13 @@ public class RestProjet {
     }
 
     //-----Trouver tous les projets ---------
-    /*
+
     @RequestMapping(value = "/allp",method = RequestMethod.GET)
     public ResponseEntity<Page<Projet>> getAll(Pageable pageable) throws Exception{
         System.out.println("Recherche de tous les projets");
-        return new ResponseEntity<>(projetService.allp(),HttpStatus.OK);
+        return new ResponseEntity<>(projetService.allp(pageable),HttpStatus.OK);
     }
-     */
+
 
     //------Gestion des erreures ------------
     @ExceptionHandler({Exception.class})

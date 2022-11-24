@@ -7,6 +7,8 @@ import be.condorcet.projet3_2.entities.associations.InvestID;
 import be.condorcet.projet3_2.services.InvestServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,9 +42,13 @@ public class RestInvest {
     }
     */
     //-----Créer un INVEST ---------------
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<Invest> createInvest(@RequestBody Invest invest) throws Exception{
-        System.out.println("Creation de l'Invest': "+invest.getId());
+    @RequestMapping(value = "/{idDis}/{idPj}", method = RequestMethod.POST)
+    public ResponseEntity<Invest> createInvest(@PathVariable(value = "idDis")int idDis,
+                                               @PathVariable(value = "idPj")int idPj,
+                                               @RequestBody Invest invest) throws Exception{
+        System.out.println("Creation de l'Invest': "+idDis+" et "+idPj);
+        InvestID id=new InvestID(idDis,idPj);
+        invest.setId(id);
         investService.create(invest);
         return new ResponseEntity<>(invest,HttpStatus.OK);
     }
@@ -76,13 +82,13 @@ public class RestInvest {
     }
 
     //-----Trouver toutes les Invest Pageable  ---------
-    /*
+
     @RequestMapping(value = "/allp",method = RequestMethod.GET)
     public ResponseEntity<Page<Invest>> getAll(Pageable pageable) throws Exception{
         System.out.println("Recherche de tous les Invests");
-        return new ResponseEntity<>(investService.allp(),HttpStatus.OK);
+        return new ResponseEntity<>(investService.allp(pageable),HttpStatus.OK);
     }
-     */
+
 
     //------Gestion des erreures ------------
     @ExceptionHandler({Exception.class})

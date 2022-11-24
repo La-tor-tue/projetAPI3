@@ -3,6 +3,8 @@ package be.condorcet.projet3_2.services;
 import be.condorcet.projet3_2.entities.Projet;
 import be.condorcet.projet3_2.repositories.ProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -43,6 +45,11 @@ public class ProjetServiceImpl implements InterfProjetService {
     @Override
     public List<Projet> all() throws Exception {
         return projetRepository.findAll();
+    }
+
+    @Override
+    public Page<Projet> allp(Pageable pageable) throws Exception {
+        return projetRepository.findAll(pageable);
     }
 
     @Override

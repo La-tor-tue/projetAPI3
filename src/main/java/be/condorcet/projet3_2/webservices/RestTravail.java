@@ -6,6 +6,8 @@ import be.condorcet.projet3_2.entities.associations.InvestID;
 import be.condorcet.projet3_2.entities.associations.TravailID;
 import be.condorcet.projet3_2.services.TravailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +44,13 @@ public class RestTravail {
     //-----Créer un Travail ---------------
     // Pas sure de l algorithme de creation
     // /!\ DANS L OBJET TRAVAIL LES IDS DOIVENT FIGURER DEDANS AVEC UN TravailID /!\
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<Travail> createTravail(@RequestBody Travail travail) throws Exception{
-        System.out.println("Creation du Travail': "+travail.getId());
+    @RequestMapping(value = "/{idEmp}/{idPj}", method = RequestMethod.POST)
+    public ResponseEntity<Travail> createTravail(@PathVariable(value = "idEmp") int idEmp,
+                                                 @PathVariable(value = "idPj") int idPj,
+                                                 @RequestBody Travail travail) throws Exception{
+        System.out.println("Creation du Travail': "+idEmp+" et "+idPj);
+        TravailID id = new TravailID(idEmp,idPj);
+        travail.setId(id);
         travailService.create(travail);
         return new ResponseEntity<>(travail,HttpStatus.OK);
     }
@@ -78,13 +84,12 @@ public class RestTravail {
     }
 
     //-----Trouver toutes les Travail Pageable  ---------
-    /*
+
     @RequestMapping(value = "/allp",method = RequestMethod.GET)
     public ResponseEntity<Page<Travail>> getAll(Pageable pageable) throws Exception{
         System.out.println("Recherche de tous les Travaux");
-        return new ResponseEntity<>(travailService.allp(),HttpStatus.OK);
+        return new ResponseEntity<>(travailService.allp(pageable),HttpStatus.OK);
     }
-     */
 
     //------Gestion des erreures ------------
     @ExceptionHandler({Exception.class})

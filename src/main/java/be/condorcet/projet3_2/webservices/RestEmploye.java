@@ -7,6 +7,8 @@ import be.condorcet.projet3_2.services.EmployeServiceImpl;
 import be.condorcet.projet3_2.services.InterfEmployeService;
 import be.condorcet.projet3_2.services.InterfProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -72,13 +74,12 @@ public class RestEmploye {
     }
 
     //-----Trouver tous les Employes Pageable ---------
-    /*
+
     @RequestMapping(value = "/allp",method = RequestMethod.GET)
     public ResponseEntity<Page<Employe>> getAll(Pageable pageable) throws Exception{
         System.out.println("Recherche de tous les Employes");
-        return new ResponseEntity<>(employeService.allp(),HttpStatus.OK);
+        return new ResponseEntity<>(employeService.allp(pageable),HttpStatus.OK);
     }
-     */
 
     //------Gestion des erreures ------------
     @ExceptionHandler({Exception.class})

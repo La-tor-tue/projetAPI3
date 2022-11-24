@@ -5,6 +5,8 @@ import be.condorcet.projet3_2.entities.Discipline;
 import be.condorcet.projet3_2.entities.Employe;
 import be.condorcet.projet3_2.services.DisciplineServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -69,13 +71,12 @@ public class RestDiscipline {
     }
 
     //-----Trouver toutes les Disciplines Pageable  ---------
-    /*
+
     @RequestMapping(value = "/allp",method = RequestMethod.GET)
     public ResponseEntity<Page<Discipline>> getAll(Pageable pageable) throws Exception{
         System.out.println("Recherche de tous les Discipliness");
-        return new ResponseEntity<>(disciplineService.allp(),HttpStatus.OK);
+        return new ResponseEntity<>(disciplineService.allp(pageable),HttpStatus.OK);
     }
-     */
 
     //------Gestion des erreures ------------
     @ExceptionHandler({Exception.class})
