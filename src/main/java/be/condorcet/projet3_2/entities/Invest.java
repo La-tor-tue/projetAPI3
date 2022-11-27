@@ -1,6 +1,7 @@
 package be.condorcet.projet3_2.entities;
 
 import be.condorcet.projet3_2.entities.associations.InvestID;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,12 +24,13 @@ public class Invest {
     private InvestID id;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @MapsId("idDis")
     private Discipline idDis;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne
     @MapsId("idPj")
     private Projet idPj;
 

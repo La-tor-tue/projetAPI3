@@ -66,6 +66,19 @@ class ProjetServiceImplTest {
     }
 
     @Test
+    void readByTitre(){
+        try {
+            String pjTitre=pj.getPjTitre();
+            Projet tmp=projetService.read(pjTitre);
+            assertEquals("TitreTest",tmp.getPjTitre(),"Titre non enregistré");
+            assertEquals(new BigDecimal(10),tmp.getPjCout(),"Cout non enregistré");
+
+        }catch (Exception e){
+            System.out.println("Erreur lors du read du projet "+e);
+        }
+    }
+
+    @Test
     void update() {
         try {
             pj.setPjCout(new BigDecimal(20));

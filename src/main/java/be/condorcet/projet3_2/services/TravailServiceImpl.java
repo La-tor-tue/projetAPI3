@@ -4,6 +4,8 @@ import be.condorcet.projet3_2.entities.Travail;
 import be.condorcet.projet3_2.entities.associations.TravailID;
 import be.condorcet.projet3_2.repositories.TravailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -45,6 +47,11 @@ public class TravailServiceImpl implements InterfTravailService{
     @Override
     public List<Travail> all() throws Exception {
         return travailRepository.findAll();
+    }
+
+    @Override
+    public Page<Travail> allp(Pageable pageable) throws Exception {
+        return travailRepository.findAll(pageable);
     }
 
     @Override
