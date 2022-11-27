@@ -4,6 +4,8 @@ import be.condorcet.projet3_2.entities.Invest;
 import be.condorcet.projet3_2.entities.associations.InvestID;
 import be.condorcet.projet3_2.repositories.InvestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -49,5 +51,10 @@ public class InvestServiceImpl implements InterfInvestService{
     @Override
     public List<Invest> all() throws Exception {
         return investRepository.findAll();
+    }
+
+    @Override
+    public Page<Invest> allp(Pageable pageable) throws Exception {
+        return investRepository.findAll(pageable);
     }
 }

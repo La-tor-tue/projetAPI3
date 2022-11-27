@@ -1,6 +1,7 @@
 package be.condorcet.projet3_2.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.jfr.Enabled;
 import lombok.*;
 
@@ -34,10 +35,12 @@ public class Projet {
     private BigDecimal pjCout;
 
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "idPj")
     private List<Travail> listTravail;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "idPj")
     private List<Invest> listInvest;

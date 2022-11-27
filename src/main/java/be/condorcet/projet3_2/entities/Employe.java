@@ -1,5 +1,6 @@
 package be.condorcet.projet3_2.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,10 +34,12 @@ public class Employe {
     @Column(name = "EMPTEL")
     private String empTel;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "idEmp")
     private List<Travail> listTravail;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "IDDIS")
     @NonNull
