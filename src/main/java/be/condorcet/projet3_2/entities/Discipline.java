@@ -1,6 +1,7 @@
 package be.condorcet.projet3_2.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,10 +29,12 @@ public class Discipline {
     @Column(name = "DISDESCRIPTION")
     private String disDesc;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "empDis")
     @ToString.Exclude
     private List<Employe> listEmp;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "idDis",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     @ToString.Exclude
     private List<Invest> listInvest;

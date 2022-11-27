@@ -49,6 +49,7 @@ public class RestInvest {
         System.out.println("Creation de l'Invest': "+idDis+" et "+idPj);
         InvestID id=new InvestID(idDis,idPj);
         invest.setId(id);
+        System.out.println(invest);
         investService.create(invest);
         return new ResponseEntity<>(invest,HttpStatus.OK);
     }

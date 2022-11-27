@@ -10,6 +10,7 @@ import java.util.Objects;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class InvestID implements Serializable {
 
     @Column(name = "IDDIS")
