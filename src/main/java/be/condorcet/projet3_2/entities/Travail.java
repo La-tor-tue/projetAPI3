@@ -24,12 +24,12 @@ public class Travail {
     private LocalDate taDateEngagement;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("idEmp")
     private Employe idEmp;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("idPj")
     private Projet idPj;
 
