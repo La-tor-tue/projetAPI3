@@ -39,7 +39,7 @@ public class Employe {
     @OneToMany(mappedBy = "idEmp")
     private List<Travail> listTravail;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "IDDIS")
     @NonNull

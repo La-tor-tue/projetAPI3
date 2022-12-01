@@ -1,9 +1,13 @@
 package be.condorcet.projet3_2.webservices;
 
+import be.condorcet.projet3_2.entities.Employe;
 import be.condorcet.projet3_2.entities.Invest;
+import be.condorcet.projet3_2.entities.Projet;
 import be.condorcet.projet3_2.entities.Travail;
 import be.condorcet.projet3_2.entities.associations.InvestID;
 import be.condorcet.projet3_2.entities.associations.TravailID;
+import be.condorcet.projet3_2.services.EmployeServiceImpl;
+import be.condorcet.projet3_2.services.ProjetServiceImpl;
 import be.condorcet.projet3_2.services.TravailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +25,12 @@ public class RestTravail {
 
     @Autowired
     private TravailServiceImpl travailService;
+
+    @Autowired
+    private EmployeServiceImpl employeService;
+
+    @Autowired
+    private ProjetServiceImpl projetService;
 
     //----Lire un Travail pour un id------
     @RequestMapping(value = "/{idEmp}/{idPj}", method = RequestMethod.GET)
@@ -50,6 +60,10 @@ public class RestTravail {
                                                  @RequestBody Travail travail) throws Exception{
         System.out.println("Creation du Travail': "+idEmp+" et "+idPj);
         TravailID id = new TravailID(idEmp,idPj);
+        Employe e = employeService.read(idEmp);
+        Projet p = projetService.read(idPj);
+        travail.setIdPj(p);
+        travail.setIdEmp(e);
         travail.setId(id);
         travailService.create(travail);
         return new ResponseEntity<>(travail,HttpStatus.OK);
