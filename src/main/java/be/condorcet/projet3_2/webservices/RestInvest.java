@@ -3,8 +3,11 @@ package be.condorcet.projet3_2.webservices;
 
 import be.condorcet.projet3_2.entities.Discipline;
 import be.condorcet.projet3_2.entities.Invest;
+import be.condorcet.projet3_2.entities.Projet;
 import be.condorcet.projet3_2.entities.associations.InvestID;
+import be.condorcet.projet3_2.services.DisciplineServiceImpl;
 import be.condorcet.projet3_2.services.InvestServiceImpl;
+import be.condorcet.projet3_2.services.ProjetServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,12 @@ public class RestInvest {
 
     @Autowired
     private InvestServiceImpl investService;
+
+    @Autowired
+    private ProjetServiceImpl projetService;
+
+    @Autowired
+    private DisciplineServiceImpl disciplineService;
 
     //----Lire un Invest pour un id------
     @RequestMapping(value = "/{idDis}/{idPj}", method = RequestMethod.GET)
@@ -48,8 +57,11 @@ public class RestInvest {
                                                @RequestBody Invest invest) throws Exception{
         System.out.println("Creation de l'Invest': "+idDis+" et "+idPj);
         InvestID id=new InvestID(idDis,idPj);
+        Projet p = projetService.read(idPj);
+        Discipline d = disciplineService.read(idDis);
+        invest.setIdPj(p);
+        invest.setIdDis(d);
         invest.setId(id);
-        System.out.println(invest);
         investService.create(invest);
         return new ResponseEntity<>(invest,HttpStatus.OK);
     }
