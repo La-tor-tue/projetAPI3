@@ -35,7 +35,7 @@ public class Discipline {
     private List<Employe> listEmp;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "idDis",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "idDis",fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Invest> listInvest;
 
