@@ -4,6 +4,7 @@ package be.condorcet.projet3_2.webservices;
 import be.condorcet.projet3_2.entities.Discipline;
 import be.condorcet.projet3_2.entities.Employe;
 import be.condorcet.projet3_2.services.DisciplineServiceImpl;
+import be.condorcet.projet3_2.services.EmployeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*",exposedHeaders = "*")
@@ -20,6 +22,9 @@ public class RestDiscipline {
 
     @Autowired
     private DisciplineServiceImpl disciplineService;
+
+    @Autowired
+    private EmployeServiceImpl employeService;
 
     //----Lire une Discipline pour un id------
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -68,6 +73,19 @@ public class RestDiscipline {
     public ResponseEntity<List<Discipline>> getAll() throws Exception{
         System.out.println("Recherche de tous les disciplines");
         return new ResponseEntity<>(disciplineService.all(),HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/allByNoSpec",method = RequestMethod.GET)
+    public ResponseEntity<List<Discipline>> getAllByNoSpec() throws Exception{
+        System.out.println("Recherche de tous les disciplines sans spécialiste");
+        List<Discipline> listDis = disciplineService.all();
+        List<Discipline> listDisNoSpec=new ArrayList<>();
+        for (int i =0; i<listDis.size();i++){
+            if (employeService.allByDis(listDis.get(i).getIdDis()).size()==0){
+                listDisNoSpec.add(listDis.get(i));
+            }
+        }
+        return new ResponseEntity<>(listDisNoSpec,HttpStatus.OK);
     }
 
     //-----Trouver toutes les Disciplines Pageable  ---------

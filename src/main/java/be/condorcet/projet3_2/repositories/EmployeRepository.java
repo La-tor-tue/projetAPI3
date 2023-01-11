@@ -16,4 +16,5 @@ public interface EmployeRepository extends JpaRepository<Employe, Integer> {
 
     List<Employe> findEmployesByEmpDis_IdDis(int iddis);
 
+
 }
