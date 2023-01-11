@@ -56,8 +56,14 @@ public class EmployeServiceImpl implements InterfEmployeService {
 
 
     public List<Employe> read(String nom){
-        return employeRepository.findEmployesByEmpNomLike(nom);
+        return employeRepository.findEmployesByEmpNomStartingWith(nom);
     }
+
+    public List<Employe> allByDis(int iddis){
+        return employeRepository.findEmployesByEmpDis_IdDis(iddis);
+    }
+
+
 
     public List<Employe> read(Discipline discipline){
         return employeRepository.findEmployesByEmpDisLike(discipline);

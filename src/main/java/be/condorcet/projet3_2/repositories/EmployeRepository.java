@@ -10,6 +10,10 @@ import java.util.List;
 @Repository
 public interface EmployeRepository extends JpaRepository<Employe, Integer> {
     List<Employe> findEmployesByEmpNomLike(String nom);
+    List<Employe> findEmployesByEmpNomStartingWith(String nom);
 
     List<Employe> findEmployesByEmpDisLike(Discipline discipline);
+
+    List<Employe> findEmployesByEmpDis_IdDis(int iddis);
+
 }
